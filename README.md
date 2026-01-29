@@ -35,26 +35,38 @@ multiplayer-game-server/
 - **Tick engine** — 30–60 updates/s  
 - **Redis caching** — fast session lookups  
 
-## ▶️ Running the Server
+## ▶️ Quick Start
+
 ```bash
 cd server
 npm install
-npm start
+node src/index.js
 ```
 
-## ▶️ Running the Client
-```bash
-cd client
-npm install
-npm run dev
-```
+Then open **http://localhost:3000** in your browser (use multiple tabs to test multiplayer).
 
-## 🧪 Testing Strategy
-- Load tests for 100+ concurrent players  
-- Mock WebSocket clients for simulation  
-- Matchmaking unit tests  
+**Game Goal**: Collect golden coins to earn points. Each coin = +10 points. First to collect the most coins wins!
+
+**Controls**: Arrow keys to move around the map.
+
+## 📋 Architecture Highlights
+- **Game Loop**: 30 ticks/second server-side state synchronization
+- **Coin Spawning**: Random spawn every 1.5 seconds, max 10 on map
+- **Collision Detection**: Server-side validation (prevent cheating)
+- **Real-time Scoring**: Leaderboard updated on every coin collection
+- **Scalable Design**: In-memory state, ready for Redis caching
+
+## � FAANG-Ready Skills Demonstrated
+- **Real-time Systems**: WebSocket-based 30 Hz game loop
+- **Networking**: Client-server state synchronization with delta updates
+- **Collision Detection**: Server-side validation to prevent cheating
+- **Scalability**: In-memory architecture easily extends to distributed state (Redis)
+- **Full-Stack**: Node.js backend + vanilla JS frontend, no frameworks needed
+- **Concurrency**: Handles multiple simultaneous connections
 
 ## 🚀 Future Enhancements
-- Add spectator mode  
-- Implement ranking system  
-- Add anti-cheat validation layer  
+- Persistent player stats (database integration)
+- Ranked matchmaking queue
+- Anti-cheat: server-side validation of client inputs
+- Power-ups and special items
+- Map obstacles and environmental hazards
